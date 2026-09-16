@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adarsh Kumar Sahu | VFX Artist & Video Editor</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Configuration for Dark Mode -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Enables toggleable dark mode
+        }
+    </script>
+    <style>
+        /* Minimalist Color Palette, Fonts & Transitions */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FAFAFA;
+            color: #111111;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        /* Dark Mode Body Settings */
+        .dark body {
+            background-color: #050505;
+            color: #F9FAFB;
+        }
+
+        /* Responsive Glassmorphism Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
+        }
+
+        .dark .glass-card {
+            background: rgba(20, 20, 20, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .dark .glass-card:hover {
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15);
+        }
+    </style>
+</head>
+
+<body class="relative min-h-screen overflow-x-hidden">
+
+    <!-- Interactive Canvas Background -->
+    <canvas id="interactive-bg" class="fixed top-0 left-0 w-full h-full -z-10"></canvas>
+
+    <!-- Navigation -->
+    <nav class="max-w-6xl mx-auto px-6 py-8 flex justify-between items-center relative z-10">
+        <div class="font-bold text-xl tracking-tight transition-colors duration-300">Adarsh Kumar Sahu</div>
+
+        <div class="flex items-center gap-6">
+            <!-- Theme Toggle Button -->
+            <button id="theme-toggle" aria-label="Toggle Dark Mode"
+                class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors duration-300">
+                <!-- Moon Icon (Shows in Light Mode) -->
+                <svg id="moon-icon" class="w-5 h-5 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                </svg>
+                <!-- Sun Icon (Shows in Dark Mode) -->
+                <svg id="sun-icon" class="w-5 h-5 text-yellow-400 hidden dark:block" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                    </path>
+                </svg>
+            </button>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScSmPtiKP4gKSTLsoaAqEzv2Uj3SqD-N4nbhd9rnZvsyNZ7Fw/viewform?usp=publish-editor"
+                target="_blank" rel="noopener noreferrer"
+                class="text-sm font-semibold text-[#2563EB] hover:text-blue-700 dark:hover:text-blue-400 transition">Get
+                in Touch</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="max-w-6xl mx-auto px-6 pt-24 pb-32 relative z-10">
+        <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6 transition-colors duration-300">
+            Invisible Effects.<br>
+            <span class="text-[#2563EB]">Dynamic Motion.</span>
+        </h1>
+        <p
+            class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mb-10 leading-relaxed transition-colors duration-300">
+            Freelance Video Editor & VFX Artist specializing in seamless compositing, rotoscoping, and 2.5D motion for
+            AAA/Indie game studios and indie filmmakers.
+        </p>
+        <a href="#work"
+            class="inline-block bg-[#111111] dark:bg-gray-100 text-[#FAFAFA] dark:text-[#111111] px-8 py-4 rounded-full font-semibold hover:bg-[#2563EB] dark:hover:bg-[#2563EB] dark:hover:text-white transition-colors duration-300">
+            View My Work
+        </a>
+    </header>
+
+    <!-- Portfolio Projects Grid -->
+    <section id="work"
+        class="max-w-6xl mx-auto px-6 py-20 relative z-10 border-t border-gray-200 dark:border-gray-800 transition-colors duration-300">
+        <h2 class="text-3xl font-bold mb-12 transition-colors duration-300">Selected Projects</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Project 01 -->
+            <div class="glass-card rounded-2xl p-6">
+                <div class="w-full h-48 rounded-lg mb-6 overflow-hidden relative">
+                    <video src="assets/final.mp4" autoplay loop muted playsinline
+                        class="w-full h-full object-cover"></video>
+                    <span
+                        class="absolute top-3 right-3 z-10 bg-white/90 dark:bg-black/80 px-3 py-1 rounded shadow text-xs font-bold text-gray-800 dark:text-gray-200">2.5D
+                        Cinematic</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2 transition-colors duration-300">Mythological Intro</h3>
+                <p class="text-[#2563EB] dark:text-blue-400 text-sm font-semibold mb-3">VFX Artist & Motion Designer</p>
+                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed transition-colors duration-300">
+                    Transformed 2D static storyboard assets into an immersive narrative sequence using parallax, dynamic
+                    lighting, and targeted color grading.
+                </p>
+            </div>
+
+            <!-- Project 02 (Wire Removal Slider) -->
+            <div class="glass-card rounded-2xl p-6">
+                <div class="w-full h-48 rounded-lg mb-6 relative overflow-hidden group">
+                    <video id="vid-after" src="assets/product-wr.mp4" autoplay loop muted playsinline
+                        class="absolute inset-0 w-full h-full object-cover"></video>
+                    <video id="vid-before" src="assets/wire-removal.mp4" autoplay loop muted playsinline
+                        class="absolute inset-0 w-full h-full object-cover"
+                        style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);"></video>
+                    <input type="range" min="0" max="100" value="50" id="wr-slider"
+                        aria-label="Interactive before and after VFX slider"
+                        class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20">
+                    <div id="wr-line"
+                        class="absolute inset-y-0 left-1/2 w-[2px] bg-white z-10 pointer-events-none drop-shadow-md">
+                        <div
+                            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg">
+                            <span
+                                class="text-[#2563EB] dark:text-blue-400 text-xs font-bold tracking-tighter">&lt;&gt;</span>
+                        </div>
+                    </div>
+                    <span
+                        class="absolute top-3 right-3 z-30 bg-white/90 dark:bg-black/80 px-3 py-1 rounded shadow text-xs font-bold text-gray-800 dark:text-gray-200 pointer-events-none">Slide
+                        to Compare</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2 transition-colors duration-300">Stunt Wire Cleanup</h3>
+                <p class="text-[#2563EB] dark:text-blue-400 text-sm font-semibold mb-3">Compositor</p>
+                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed transition-colors duration-300">
+                    Meticulous rotoscoping and clean plate generation to seamlessly erase stunt harnesses while
+                    maintaining natural motion blur.
+                </p>
+            </div>
+
+            <!-- Project 03 (Green Screen Slider) -->
+            <div class="glass-card rounded-2xl p-6">
+                <div class="w-full h-48 rounded-lg mb-6 relative overflow-hidden group">
+                    <video id="gs-after" src="assets/green-screen-product.mp4" autoplay loop muted playsinline
+                        class="absolute inset-0 w-full h-full object-cover"></video>
+                    <video id="gs-before" src="assets/green-screen-raw.mp4" autoplay loop muted playsinline
+                        class="absolute inset-0 w-full h-full object-cover"
+                        style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);"></video>
+                    <input type="range" min="0" max="100" value="50" id="gs-slider"
+                        aria-label="Interactive before and after VFX slider"
+                        class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20">
+                    <div id="gs-line"
+                        class="absolute inset-y-0 left-1/2 w-[2px] bg-white z-10 pointer-events-none drop-shadow-md">
+                        <div
+                            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg">
+                            <span
+                                class="text-[#2563EB] dark:text-blue-400 text-xs font-bold tracking-tighter">&lt;&gt;</span>
+                        </div>
+                    </div>
+                    <span
+                        class="absolute top-3 right-3 z-30 bg-white/90 dark:bg-black/80 px-3 py-1 rounded shadow text-xs font-bold text-gray-800 dark:text-gray-200 pointer-events-none">Slide
+                        to Compare</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2 transition-colors duration-300">Precision Green Screen</h3>
+                <p class="text-[#2563EB] dark:text-blue-400 text-sm font-semibold mb-3">Compositor</p>
+                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed transition-colors duration-300">
+                    Extracted complex character performances, suppressing green spill and preserving edge details for
+                    flawless digital environment integration.
+                </p>
+            </div>
+
+            <!-- Project 04 -->
+            <div class="glass-card rounded-2xl p-6">
+                <div
+                    class="w-full h-48 rounded-lg mb-6 overflow-hidden relative bg-[#FAFAFA] dark:bg-gray-900 transition-colors duration-300">
+                    <video src="assets/logo-animation-2.mp4" autoplay loop muted playsinline
+                        class="w-full h-full object-contain"></video>
+                    <span
+                        class="absolute top-3 right-3 z-10 bg-white/90 dark:bg-black/80 px-3 py-1 rounded shadow text-xs font-bold text-gray-800 dark:text-gray-200">Logo
+                        Animation</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2 transition-colors duration-300">Vyuha Title Reveal</h3>
+                <p class="text-[#2563EB] dark:text-blue-400 text-sm font-semibold mb-3">Motion Designer</p>
+                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed transition-colors duration-300">
+                    Animated individual typography elements with a dynamic zoom-out effect. Integrated custom lens
+                    flares to create a polished, cinematic title reveal for the game.
+                </p>
+            </div>
+
+            <!-- Project 05 -->
+            <div class="glass-card rounded-2xl p-6">
+                <div
+                    class="w-full h-48 rounded-lg mb-6 overflow-hidden relative bg-[#FAFAFA] dark:bg-gray-900 transition-colors duration-300">
+                    <video src="assets/gameplay-mechanic.mp4" autoplay loop muted playsinline
+                        class="w-full h-full object-cover"></video>
+                    <span
+                        class="absolute top-3 right-3 z-10 bg-white/90 dark:bg-black/80 px-3 py-1 rounded shadow text-xs font-bold text-gray-800 dark:text-gray-200">Game
+                        Mechanics</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2 transition-colors duration-300">Kaal (In Development)</h3>
+                <p class="text-[#2563EB] dark:text-blue-400 text-sm font-semibold mb-3">Gameplay Developer & Designer
+                </p>
+                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed transition-colors duration-300">
+                    Engineered core game mechanics, including fluid player movement, interactive environmental items,
+                    and responsive controls for this work-in-progress title.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Skills & Software -->
+    <section class="max-w-6xl mx-auto px-6 py-20 relative z-10">
+        <h2 class="text-2xl font-bold mb-8 transition-colors duration-300">Technical Stack</h2>
+        <div class="flex flex-wrap gap-4">
+            <span
+                class="px-5 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 transition-colors duration-300">Adobe
+                Premiere Pro</span>
+            <span
+                class="px-5 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 transition-colors duration-300">Adobe
+                After Effects</span>
+            <span
+                class="px-5 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 transition-colors duration-300">Blender</span>
+            <span
+                class="px-5 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 transition-colors duration-300">Unreal
+                Engine</span>
+            <span
+                class="px-5 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 transition-colors duration-300">DaVinci
+                Resolve</span>
+            <span
+                class="px-5 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 transition-colors duration-300">Unity3D</span>
+            <span class="px-5 py-2 bg-[#2563EB] text-white rounded-full text-sm font-semibold">Motion Graphics</span>
+            <span class="px-5 py-2 bg-[#2563EB] text-white rounded-full text-sm font-semibold">Rotoscoping</span>
+            <span class="px-5 py-2 bg-[#2563EB] text-white rounded-full text-sm font-semibold">Compositing</span>
+            <span class="px-5 py-2 bg-[#2563EB] text-white rounded-full text-sm font-semibold">Color Grading</span>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <footer id="contact"
+        class="max-w-6xl mx-auto px-6 py-24 relative z-10 border-t border-gray-200 dark:border-gray-800 transition-colors duration-300">
+        <div class="text-center">
+            <h2 class="text-4xl font-bold mb-6 transition-colors duration-300">Ready to collaborate?</h2>
+            <p class="text-gray-600 dark:text-gray-400 mb-10 max-w-lg mx-auto transition-colors duration-300">Currently
+                accepting freelance projects from indie directors and game studios seeking flawless visual integration.
+            </p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScSmPtiKP4gKSTLsoaAqEzv2Uj3SqD-N4nbhd9rnZvsyNZ7Fw/viewform?usp=publish-editor"
+                target="_blank" rel="noopener noreferrer"
+                class="inline-block bg-[#2563EB] text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-blue-700 transition shadow-lg hover:shadow-xl">
+                Let's Talk Project Scope
+            </a>
+        </div>
+    </footer>
+
+    <!-- Interactive Background & Logic JavaScript -->
+    <script>
+        // --- 1. Theme Toggle Logic ---
+        const htmlEl = document.documentElement;
+        const themeBtn = document.getElementById('theme-toggle');
+
+        // Check for saved theme preference, or use system preference
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlEl.classList.add('dark');
+        }
+
+        themeBtn.addEventListener('click', () => {
+            htmlEl.classList.toggle('dark');
+            if (htmlEl.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // --- 2. Interactive Video Sliders Logic ---
+        // Slider 1: Wire Removal
+        const wrSlider = document.getElementById('wr-slider');
+        const vidBefore = document.getElementById('vid-before');
+        const wrLine = document.getElementById('wr-line');
+        const vidAfter = document.getElementById('vid-after');
+
+        wrSlider.addEventListener('input', (e) => {
+            const val = e.target.value;
+            vidBefore.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
+            wrLine.style.left = `${val}%`;
+        });
+
+        vidBefore.addEventListener('timeupdate', () => {
+            if (Math.abs(vidAfter.currentTime - vidBefore.currentTime) > 0.1) {
+                vidAfter.currentTime = vidBefore.currentTime;
+            }
+        });
+
+        // Slider 2: Green Screen
+        const gsSlider = document.getElementById('gs-slider');
+        const gsBefore = document.getElementById('gs-before');
+        const gsLine = document.getElementById('gs-line');
+        const gsAfter = document.getElementById('gs-after');
+
+        gsSlider.addEventListener('input', (e) => {
+            const val = e.target.value;
+            gsBefore.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
+            gsLine.style.left = `${val}%`;
+        });
+
+        gsBefore.addEventListener('timeupdate', () => {
+            if (Math.abs(gsAfter.currentTime - gsBefore.currentTime) > 0.1) {
+                gsAfter.currentTime = gsBefore.currentTime;
+            }
+        });
+
+        // --- 3. Upgraded Network Constellation Canvas ---
+        const canvas = document.getElementById('interactive-bg');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        let mouse = { x: null, y: null, radius: 150 };
+
+        function initCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            particles = [];
+            // Create particles based on screen size
+            for (let i = 0; i < (width * height) / 14000; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    size: Math.random() * 1.5 + 0.5,
+                    baseX: Math.random() * width,
+                    baseY: Math.random() * height,
+                    density: (Math.random() * 30) + 1
+                });
+            }
+        }
+
+        window.addEventListener('resize', initCanvas);
+        window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
+        window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            // Adapt colors based on Light/Dark mode
+            const isDark = document.documentElement.classList.contains('dark');
+            const dotColor = isDark ? 'rgba(255, 255, 255, 0.4)' : 'rgba(37, 99, 235, 0.3)';
+            const lineColor = isDark ? '255, 255, 255' : '37, 99, 235';
+
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+
+                // Mouse repulsion physics
+                if (mouse.x != null) {
+                    let dx = mouse.x - p.x;
+                    let dy = mouse.y - p.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    let forceDirectionX = dx / distance;
+                    let forceDirectionY = dy / distance;
+                    let maxDistance = mouse.radius;
+                    let force = (maxDistance - distance) / maxDistance;
+
+                    if (distance < mouse.radius) {
+                        p.x -= forceDirectionX * force * p.density;
+                        p.y -= forceDirectionY * force * p.density;
+                    } else {
+                        if (p.x !== p.baseX) p.x -= (p.x - p.baseX) / 10;
+                        if (p.y !== p.baseY) p.y -= (p.y - p.baseY) / 10;
+                    }
+                }
+
+                // Draw Dots
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = dotColor;
+                ctx.fill();
+
+                // Draw Connecting Network Lines
+                for (let j = i; j < particles.length; j++) {
+                    let p2 = particles[j];
+                    let dx = p.x - p2.x;
+                    let dy = p.y - p2.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+
+                    // If particles are close, draw a line between them
+                    if (distance < 80) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(${lineColor}, ${0.15 - distance / 80})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        initCanvas();
+        animate();
+    </script>
+</body>
+
+</html>
