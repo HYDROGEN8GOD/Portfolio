@@ -453,6 +453,488 @@
 
                 for (let j = i + 1; j < particles.length; j++) {
                     const p2 = particles[j];
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Basic Security Meta Tags -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' https://cdn.tailwindcss.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; media-src 'self'; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://docs.google.com; upgrade-insecure-requests;">
+    
+    <!-- Anti-Clickjacking Frame-Busting Script -->
+    <script>
+        if (window.top !== window.self) { window.top.location = window.self.location; }
+    </script>
+
+    <title>Adarsh Kumar Sahu | VFX Artist & Video Editor</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration for Dark Mode -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Enables toggleable dark mode
+        }
+    </script>
+    <style>
+        :root {
+            --bg: #f4f3ef;
+            --surface: rgba(255, 255, 255, 0.78);
+            --text: #151515;
+            --muted: #67655f;
+            --line: rgba(21, 21, 21, 0.10);
+            --accent: #d8ff3e;
+            --accent-2: #7c5cff;
+            --ink: #101010;
+        }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background:
+                radial-gradient(circle at 85% 8%, rgba(124, 92, 255, 0.10), transparent 28rem),
+                radial-gradient(circle at 8% 24%, rgba(216, 255, 62, 0.10), transparent 25rem),
+                var(--bg);
+            color: var(--text);
+            transition: background-color 0.35s ease, color 0.35s ease;
+        }
+
+        .dark body {
+            --bg: #090909;
+            --surface: rgba(19, 19, 19, 0.88);
+            --text: #f5f3ed;
+            --muted: #a09d95;
+            --line: rgba(255, 255, 255, 0.12);
+            --ink: #f5f3ed;
+            background:
+                radial-gradient(circle at 82% 10%, rgba(124, 92, 255, 0.16), transparent 28rem),
+                radial-gradient(circle at 12% 28%, rgba(216, 255, 62, 0.06), transparent 24rem),
+                var(--bg);
+        }
+
+        .site-grid {
+            background-image:
+                linear-gradient(rgba(20,20,20,0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(20,20,20,0.035) 1px, transparent 1px);
+            background-size: 48px 48px;
+        }
+
+        .dark .site-grid {
+            background-image:
+                linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+        }
+
+        .glass-card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            box-shadow: 0 14px 45px rgba(0, 0, 0, 0.055);
+            transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(124, 92, 255, 0.38);
+            box-shadow: 0 22px 55px rgba(0, 0, 0, 0.10);
+        }
+
+        .project-media {
+            background: #111;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+        }
+
+        .eyebrow {
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-size: 0.68rem;
+            font-weight: 700;
+        }
+
+        .gradient-text {
+            background: linear-gradient(100deg, #7c5cff 0%, #d44cff 45%, #ff8a3d 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .accent-rule {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(124,92,255,0.65), transparent);
+        }
+
+        @media (max-width: 640px) {
+            .site-grid { background-size: 36px 36px; }
+            .glass-card { box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.001ms !important;
+                transition-duration: 0.001ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="relative min-h-screen overflow-x-hidden site-grid">
+
+    <!-- Interactive Canvas Background -->
+    <canvas id="interactive-bg" class="fixed top-0 left-0 w-full h-full -z-10"></canvas>
+
+    <!-- Navigation -->
+    <nav class="max-w-6xl mx-auto px-6 py-8 flex justify-between items-center relative z-10">
+        <div><div class="font-black text-xl tracking-tight">ADARSH / SAHU</div><div class="eyebrow text-gray-500 dark:text-gray-500 mt-1">VFX · EDITING · MOTION</div></div>
+
+        <div class="flex items-center gap-6">
+            <!-- Theme Toggle Button -->
+            <button id="theme-toggle" aria-label="Toggle Dark Mode"
+                class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors duration-300">
+                <!-- Moon Icon (Shows in Light Mode) -->
+                <svg id="moon-icon" class="w-5 h-5 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                </svg>
+                <!-- Sun Icon (Shows in Dark Mode) -->
+                <svg id="sun-icon" class="w-5 h-5 text-yellow-400 hidden dark:block" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                    </path>
+                </svg>
+            </button>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScSmPtiKP4gKSTLsoaAqEzv2Uj3SqD-N4nbhd9rnZvsyNZ7Fw/viewform?usp=publish-editor"
+                target="_blank" rel="noopener noreferrer"
+                class="text-sm font-semibold text-[#7c5cff] hover:text-[#6547e8] dark:hover:text-blue-400 transition">Get
+                in Touch</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="max-w-6xl mx-auto px-6 pt-24 pb-32 relative z-10">
+        <div class="eyebrow text-gray-500 dark:text-gray-500 mb-5">Freelance VFX Artist / Video Editor</div>
+        <h1 class="text-5xl md:text-7xl font-black leading-[0.96] tracking-[-0.04em] mb-7 transition-colors duration-300">
+            Invisible Effects.<br>
+            <span class="gradient-text">Dynamic Motion.</span>
+        </h1>
+        <p
+            class="text-base md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mb-10 leading-relaxed transition-colors duration-300">
+            Freelance Video Editor & VFX Artist specializing in seamless compositing, rotoscoping, and 2.5D motion for
+            AAA/Indie game studios and indie filmmakers.
+        </p>
+        <a href="#work"
+            class="inline-flex items-center gap-3 bg-[#111111] dark:bg-white text-white dark:text-black px-7 py-4 rounded-full font-semibold hover:bg-[#7c5cff] hover:text-white transition-colors duration-300">
+            View Selected Work <span aria-hidden="true">↘</span>
+        </a>
+    </header>
+
+    <!-- Portfolio Projects Grid -->
+    <section id="work"
+        class="max-w-6xl mx-auto px-6 py-20 relative z-10 border-t border-gray-200 dark:border-gray-800 transition-colors duration-300">
+        <div class="flex items-end justify-between gap-6 mb-12">
+            <div><div class="eyebrow text-gray-500 dark:text-gray-500 mb-3">Selected Work</div><h2 class="text-3xl md:text-4xl font-black tracking-tight">Built for the frame.</h2></div>
+            <span class="hidden sm:block text-sm text-gray-500 dark:text-gray-500">Compositing · Motion · Game VFX</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Project 01 -->
+            <div class="glass-card rounded-2xl p-6">
+                <div class="w-full h-52 rounded-lg mb-6 overflow-hidden relative project-media">
+                    <video src="Assets/final.mp4" autoplay loop muted playsinline preload="metadata"
+                        class="w-full h-full object-cover"></video>
+                    <span
+                        class="absolute top-3 right-3 z-10 bg-white/90 dark:bg-black/80 px-3 py-1 rounded shadow text-xs font-bold text-gray-800 dark:text-gray-200">2.5D
+                        Cinematic</span>
+                </div>
+                <div class="eyebrow text-gray-400 dark:text-gray-600 mb-2">01 / 2.5D</div><h3 class="text-xl font-bold mb-2 transition-colors duration-300">Mythological Intro</h3>
+                <p class="text-[#7c5cff] dark:text-[#b19cff] text-sm font-semibold mb-3">VFX Artist & Motion Designer</p>
+                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed transition-colors duration-300">
+                    Transformed 2D static storyboard assets into an immersive narrative sequence using parallax, dynamic
+                    lighting, and targeted color grading.
+                </p>
+            </div>
+
+            <!-- Project 02 (Wire Removal Slider) -->
+            <div class="glass-card rounded-2xl p-6">
+                <div class="w-full h-52 rounded-lg mb-6 relative overflow-hidden group project-media">
+                    <video id="vid-after" src="Assets/product-wr.mp4" autoplay loop muted playsinline preload="metadata"
+                        class="absolute inset-0 w-full h-full object-cover"></video>
+                    <video id="vid-before" src="Assets/wire-removal.mp4" autoplay loop muted playsinline preload="metadata"
+                        class="absolute inset-0 w-full h-full object-cover"
+                        style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);"></video>
+                    <input type="range" min="0" max="100" value="50" id="wr-slider"
+                        aria-label="Interactive before and after VFX slider"
+                        class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20">
+                    <div id="wr-line"
+                        class="absolute inset-y-0 left-1/2 w-[2px] bg-white z-10 pointer-events-none drop-shadow-md">
+                        <div
+                            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg">
+                            <span
+                                class="text-[#7c5cff] dark:text-[#b19cff] text-xs font-bold tracking-tighter">&lt;&gt;</span>
+                        </div>
+                    </div>
+                    <span
+                        class="absolute top-3 right-3 z-30 bg-white/90 dark:bg-black/80 px-3 py-1 rounded shadow text-xs font-bold text-gray-800 dark:text-gray-200 pointer-events-none">Slide
+                        to Compare</span>
+                </div>
+                <div class="eyebrow text-gray-400 dark:text-gray-600 mb-2">02 / CLEANUP</div><h3 class="text-xl font-bold mb-2 transition-colors duration-300">Stunt Wire Cleanup</h3>
+                <p class="text-[#7c5cff] dark:text-[#b19cff] text-sm font-semibold mb-3">Compositor</p>
+                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed transition-colors duration-300">
+                    Meticulous rotoscoping and clean plate generation to seamlessly erase stunt harnesses while
+                    maintaining natural motion blur.
+                </p>
+            </div>
+
+            <!-- Project 03 (Green Screen Slider) -->
+            <div class="glass-card rounded-2xl p-6">
+                <div class="w-full h-52 rounded-lg mb-6 relative overflow-hidden group project-media">
+                    <video id="gs-after" src="Assets/green-screen-product.mp4" autoplay loop muted playsinline preload="metadata"
+                        class="absolute inset-0 w-full h-full object-cover"></video>
+                    <video id="gs-before" src="Assets/green-screen-raw.mp4" autoplay loop muted playsinline preload="metadata"
+                        class="absolute inset-0 w-full h-full object-cover"
+                        style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);"></video>
+                    <input type="range" min="0" max="100" value="50" id="gs-slider"
+                        aria-label="Interactive before and after VFX slider"
+                        class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20">
+                    <div id="gs-line"
+                        class="absolute inset-y-0 left-1/2 w-[2px] bg-white z-10 pointer-events-none drop-shadow-md">
+                        <div
+                            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg">
+                            <span
+                                class="text-[#7c5cff] dark:text-[#b19cff] text-xs font-bold tracking-tighter">&lt;&gt;</span>
+                        </div>
+                    </div>
+                    <span
+                        class="absolute top-3 right-3 z-30 bg-white/90 dark:bg-black/80 px-3 py-1 rounded shadow text-xs font-bold text-gray-800 dark:text-gray-200 pointer-events-none">Slide
+                        to Compare</span>
+                </div>
+                <div class="eyebrow text-gray-400 dark:text-gray-600 mb-2">03 / KEYING</div><h3 class="text-xl font-bold mb-2 transition-colors duration-300">Precision Green Screen</h3>
+                <p class="text-[#7c5cff] dark:text-[#b19cff] text-sm font-semibold mb-3">Compositor</p>
+                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed transition-colors duration-300">
+                    Extracted complex character performances, suppressing green spill and preserving edge details for
+                    flawless digital environment integration.
+                </p>
+            </div>
+
+            <!-- Project 04 -->
+            <div class="glass-card rounded-2xl p-6">
+                <div
+                    class="w-full h-52 rounded-lg mb-6 overflow-hidden relative project-media transition-colors duration-300">
+                    <video src="Assets/logo-animation-2.mp4" autoplay loop muted playsinline preload="metadata"
+                        class="w-full h-full object-contain"></video>
+                    <span
+                        class="absolute top-3 right-3 z-10 bg-white/90 dark:bg-black/80 px-3 py-1 rounded shadow text-xs font-bold text-gray-800 dark:text-gray-200">Logo
+                        Animation</span>
+                </div>
+                <div class="eyebrow text-gray-400 dark:text-gray-600 mb-2">04 / MOTION</div><h3 class="text-xl font-bold mb-2 transition-colors duration-300">Vyuha Title Reveal</h3>
+                <p class="text-[#7c5cff] dark:text-[#b19cff] text-sm font-semibold mb-3">Motion Designer</p>
+                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed transition-colors duration-300">
+                    Animated individual typography elements with a dynamic zoom-out effect. Integrated custom lens
+                    flares to create a polished, cinematic title reveal for the game.
+                </p>
+            </div>
+    </section>
+
+    <!-- Skills & Software -->
+    <section class="max-w-6xl mx-auto px-6 py-20 relative z-10">
+        <h2 class="text-2xl font-bold mb-8 transition-colors duration-300">Technical Stack</h2>
+        <div class="flex flex-wrap gap-4">
+            <span
+                class="px-5 py-2 bg-black/[0.03] dark:bg-white/[0.05] border border-black/10 dark:border-white/10 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 transition-colors duration-300">Adobe
+                Premiere Pro</span>
+            <span
+                class="px-5 py-2 bg-black/[0.03] dark:bg-white/[0.05] border border-black/10 dark:border-white/10 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 transition-colors duration-300">Adobe
+                After Effects</span>
+            <span
+                class="px-5 py-2 bg-black/[0.03] dark:bg-white/[0.05] border border-black/10 dark:border-white/10 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 transition-colors duration-300">Blender</span>
+            <span
+                class="px-5 py-2 bg-black/[0.03] dark:bg-white/[0.05] border border-black/10 dark:border-white/10 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 transition-colors duration-300">Unreal
+                Engine</span>
+            <span
+                class="px-5 py-2 bg-black/[0.03] dark:bg-white/[0.05] border border-black/10 dark:border-white/10 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 transition-colors duration-300">DaVinci
+                Resolve</span>
+            <span
+                class="px-5 py-2 bg-black/[0.03] dark:bg-white/[0.05] border border-black/10 dark:border-white/10 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-300 transition-colors duration-300">Unity3D</span>
+            <span class="px-5 py-2 bg-[#7c5cff] text-white rounded-full text-sm font-semibold">Motion Graphics</span>
+            <span class="px-5 py-2 bg-[#7c5cff] text-white rounded-full text-sm font-semibold">Rotoscoping</span>
+            <span class="px-5 py-2 bg-[#7c5cff] text-white rounded-full text-sm font-semibold">Compositing</span>
+            <span class="px-5 py-2 bg-[#7c5cff] text-white rounded-full text-sm font-semibold">Color Grading</span>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <footer id="contact"
+        class="max-w-6xl mx-auto px-6 py-24 relative z-10 border-t border-gray-200 dark:border-gray-800 transition-colors duration-300">
+        <div class="text-center">
+            <h2 class="text-4xl font-bold mb-6 transition-colors duration-300">Ready to collaborate?</h2>
+            <p class="text-gray-600 dark:text-gray-400 mb-10 max-w-lg mx-auto transition-colors duration-300">Currently
+                accepting freelance projects from indie directors and game studios seeking flawless visual integration.
+            </p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScSmPtiKP4gKSTLsoaAqEzv2Uj3SqD-N4nbhd9rnZvsyNZ7Fw/viewform?usp=publish-editor"
+                target="_blank" rel="noopener noreferrer"
+                class="inline-block bg-[#7c5cff] text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-[#6547e8] transition shadow-lg hover:shadow-xl">
+                Let's Talk Project Scope
+            </a>
+        </div>
+    </footer>
+
+    <!-- Interactive Background & Logic JavaScript -->
+    <script>
+        // --- 1. Theme Toggle Logic ---
+        const htmlEl = document.documentElement;
+        const themeBtn = document.getElementById('theme-toggle');
+
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlEl.classList.add('dark');
+        }
+
+        themeBtn.addEventListener('click', () => {
+            htmlEl.classList.toggle('dark');
+            if (htmlEl.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // --- 2. Advanced Video Synchronization ---
+        // This forces the "bottom" video to strictly follow the "top" video
+        function lockVideoSync(masterVid, slaveVid) {
+            masterVid.addEventListener('play', () => { 
+                slaveVid.currentTime = masterVid.currentTime; 
+                slaveVid.play().catch(() => {}); 
+            });
+            masterVid.addEventListener('pause', () => slaveVid.pause());
+            masterVid.addEventListener('seeking', () => { slaveVid.currentTime = masterVid.currentTime; });
+            masterVid.addEventListener('waiting', () => slaveVid.pause());
+            masterVid.addEventListener('playing', () => { 
+                slaveVid.currentTime = masterVid.currentTime; 
+                slaveVid.play().catch(() => {}); 
+            });
+
+            // High-frequency drift check for buttery smooth playback
+            function checkDrift() {
+                if (!masterVid.paused && !slaveVid.paused) {
+                    let drift = Math.abs(masterVid.currentTime - slaveVid.currentTime);
+                    if (drift > 0.08) { 
+                        slaveVid.currentTime = masterVid.currentTime;
+                    }
+                }
+                requestAnimationFrame(checkDrift);
+            }
+            checkDrift();
+        }
+
+        // Initialize Slider 1: Wire Removal
+        const wrSlider = document.getElementById('wr-slider');
+        const wrBefore = document.getElementById('vid-before');
+        const wrAfter = document.getElementById('vid-after');
+        const wrLine = document.getElementById('wr-line');
+
+        wrSlider.addEventListener('input', (e) => {
+            wrBefore.style.clipPath = `polygon(0 0, ${e.target.value}% 0, ${e.target.value}% 100%, 0 100%)`;
+            wrLine.style.left = `${e.target.value}%`;
+        });
+        lockVideoSync(wrBefore, wrAfter);
+
+        // Initialize Slider 2: Green Screen
+        const gsSlider = document.getElementById('gs-slider');
+        const gsBefore = document.getElementById('gs-before');
+        const gsAfter = document.getElementById('gs-after');
+        const gsLine = document.getElementById('gs-line');
+
+        gsSlider.addEventListener('input', (e) => {
+            gsBefore.style.clipPath = `polygon(0 0, ${e.target.value}% 0, ${e.target.value}% 100%, 0 100%)`;
+            gsLine.style.left = `${e.target.value}%`;
+        });
+        lockVideoSync(gsBefore, gsAfter);
+
+        // --- 3. Adaptive Canvas Background ---
+        const canvas = document.getElementById('interactive-bg');
+        const ctx = canvas.getContext('2d', { alpha: true });
+        let width = 0, height = 0, particles = [];
+        let mouse = { x: null, y: null };
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const isMobile = window.matchMedia('(max-width: 768px)').matches;
+        const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1 : 1.5);
+
+        function initCanvas() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = Math.floor(width * dpr);
+            canvas.height = Math.floor(height * dpr);
+            canvas.style.width = width + 'px';
+            canvas.style.height = height + 'px';
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+            const areaFactor = isMobile ? 26000 : 42000;
+            const count = reduceMotion ? 0 : Math.min(55, Math.max(10, Math.floor((width * height) / areaFactor)));
+            particles = Array.from({ length: count }, () => ({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                vx: (Math.random() - 0.5) * 0.12,
+                vy: (Math.random() - 0.5) * 0.12,
+                size: Math.random() * 1.2 + 0.4
+            }));
+        }
+
+        window.addEventListener('resize', initCanvas, { passive: true });
+
+        if (!isMobile && !reduceMotion) {
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+            }, { passive: true });
+            window.addEventListener('mouseout', () => {
+                mouse.x = null;
+                mouse.y = null;
+            }, { passive: true });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            const isDark = document.documentElement.classList.contains('dark');
+            const dotColor = isDark ? 'rgba(255,255,255,0.22)' : 'rgba(80,60,120,0.18)';
+            const lineColor = isDark ? 'rgba(255,255,255,' : 'rgba(80,60,120,';
+
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > width) p.vx *= -1;
+                if (p.y < 0 || p.y > height) p.vy *= -1;
+
+                if (mouse.x !== null) {
+                    const dx = mouse.x - p.x;
+                    const dy = mouse.y - p.y;
+                    const distSq = dx * dx + dy * dy;
+                    if (distSq < 120 * 120) {
+                        const dist = Math.sqrt(distSq) || 1;
+                        const force = (120 - dist) / 120;
+                        p.x -= (dx / dist) * force * 0.35;
+                        p.y -= (dy / dist) * force * 0.35;
+                    }
+                }
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = dotColor;
+                ctx.fill();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    const p2 = particles[j];
                     const dx = p.x - p2.x;
                     const dy = p.y - p2.y;
                     const distSq = dx * dx + dy * dy;
